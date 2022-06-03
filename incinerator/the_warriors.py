@@ -55,7 +55,10 @@ class Warrior:
     def __init__(self):
         self.health: int = 50
         self.attack: int = 5
-        self.is_alive: bool = True
+
+    @property
+    def is_alive(self) -> bool:
+        return self.health > 0
 
     def hit(self, enemy: 'Warrior'):
         """Hit an enemy (make him lose his health)."""
@@ -63,7 +66,6 @@ class Warrior:
         if enemy.health < 0:
             # Enemy can't be more dead than dead
             enemy.health = 0
-        enemy.is_alive = enemy.health > 0
 
 
 class Knight(Warrior):
@@ -76,9 +78,8 @@ class Knight(Warrior):
 
 def fight(unit_1: 'Warrior', unit_2: 'Warrior'):
     """Initiate the duel between two units and define the strongest."""
-    while unit_1.is_alive:
+    while unit_1.is_alive and unit_2.is_alive:
         unit_1.hit(unit_2)
-        if not unit_2.is_alive:
-            break
-        unit_2.hit(unit_1)
+        if unit_2.is_alive:
+            unit_2.hit(unit_1)
     return unit_1.is_alive
