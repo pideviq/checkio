@@ -60,12 +60,18 @@ class Warrior:
     def is_alive(self) -> bool:
         return self.health > 0
 
+    def take_damage(self, damage: int):
+        """Take damage from hit (decreases health)."""
+        if damage < 0:
+            raise ValueError('damage must be greater than or equal to zero')
+        self.health -= damage
+        if self.health < 0:
+            # Warrior can't be more dead than dead
+            self.health = 0
+
     def hit(self, enemy: 'Warrior'):
-        """Hit an enemy (make him lose his health)."""
-        enemy.health -= self.attack
-        if enemy.health < 0:
-            # Enemy can't be more dead than dead
-            enemy.health = 0
+        """Hit an enemy (make him take damage)."""
+        enemy.take_damage(self.attack)
 
 
 class Knight(Warrior):

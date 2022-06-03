@@ -19,6 +19,16 @@ class TestTheWarriors(unittest.TestCase):
         self.assertEqual(7, knight.attack)
         self.assertTrue(knight.is_alive)
 
+    def test_take_damage(self):
+        """Test take_damage implementation."""
+        warrior = Warrior()
+        with self.assertRaises(ValueError):
+            warrior.take_damage(-2)
+        damage = 5
+        health_after_damage = warrior.health - damage
+        warrior.take_damage(damage)
+        self.assertEqual(health_after_damage, warrior.health)
+
     def test_fight(self):
         """Test the duel result."""
         chuck = Warrior()
