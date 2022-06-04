@@ -11,6 +11,7 @@ class TestTheWarriors(unittest.TestCase):
         self.assertEqual(50, warrior.health)
         self.assertEqual(5, warrior.attack)
         self.assertTrue(warrior.is_alive)
+        self.assertTrue(warrior)
 
     def test_knight_init(self):
         """Test initial indicators of a Knight."""
@@ -18,6 +19,7 @@ class TestTheWarriors(unittest.TestCase):
         self.assertEqual(50, knight.health)
         self.assertEqual(7, knight.attack)
         self.assertTrue(knight.is_alive)
+        self.assertTrue(knight)
 
     def test_take_damage(self):
         """Test take_damage implementation."""
@@ -35,7 +37,9 @@ class TestTheWarriors(unittest.TestCase):
         bruce = Warrior()
         self.assertTrue(fight(chuck, bruce))
         self.assertTrue(chuck.is_alive)
+        self.assertTrue(chuck)
         self.assertFalse(bruce.is_alive)
+        self.assertFalse(bruce)
 
         carl = Knight()
         dave = Warrior()

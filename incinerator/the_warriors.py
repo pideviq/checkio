@@ -56,6 +56,9 @@ class Warrior:
         self.health: int = 50
         self.attack: int = 5
 
+    def __bool__(self):
+        return self.is_alive
+
     @property
     def is_alive(self) -> bool:
         return self.health > 0
@@ -84,8 +87,8 @@ class Knight(Warrior):
 
 def fight(unit_1: 'Warrior', unit_2: 'Warrior'):
     """Initiate the duel between two units and define the strongest."""
-    while unit_1.is_alive and unit_2.is_alive:
+    while unit_1 and unit_2:
         unit_1.hit(unit_2)
-        if unit_2.is_alive:
+        if unit_2:
             unit_2.hit(unit_1)
     return unit_1.is_alive
