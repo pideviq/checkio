@@ -1,5 +1,5 @@
 import unittest
-from incinerator.the_warriors import Warrior, fight
+from incinerator.the_warriors import Warrior, Knight, fight
 from incinerator.army_battles import Army, Battle
 from incinerator.the_defenders import Defender, Rookie
 
@@ -7,7 +7,7 @@ from incinerator.the_defenders import Defender, Rookie
 class TestTheDefenders(unittest.TestCase):
     """Test a solution of The Defenders problem."""
 
-    def test_defender(self):
+    def test_defender(self) -> None:
         defender = Defender()
         # Check properties
         self.assertEqual(60, defender.health)
@@ -20,7 +20,17 @@ class TestTheDefenders(unittest.TestCase):
         defender.take_damage(defender.health + defender.defense + 1)
         self.assertEqual(0, defender.health)
 
-    def test_battle_with_defenders(self):
+    def test_fight(self) -> None:
+        """Test fight with defender."""
+        bob = Defender()
+        mike = Knight()
+        rog = Warrior()
+        lancelot = Defender()
+
+        self.assertFalse(fight(bob, mike))
+        self.assertTrue(fight(lancelot, rog))
+
+    def test_battle_with_defenders(self) -> None:
         """Test battle between two armies with defenders in it."""
         my_army = Army()
         my_army.add_units(Defender, 1)
@@ -40,7 +50,7 @@ class TestTheDefenders(unittest.TestCase):
         self.assertFalse(battle.fight(my_army, enemy_army))
         self.assertTrue(battle.fight(army_3, army_4))
 
-    def test_battle_with_rookies(self):
+    def test_battle_with_rookies(self) -> None:
         """Test battle with rookies,
         whose attack is less than defender's defense.
         """
@@ -52,7 +62,7 @@ class TestTheDefenders(unittest.TestCase):
 
         self.assertTrue(Battle.fight(my_army, enemy_army))
 
-    def test_fight_with_rookie(self):
+    def test_fight_with_rookie(self) -> None:
         """Test defender's behavior in fight with rookie."""
         defender = Defender()
         initial_health = defender.health

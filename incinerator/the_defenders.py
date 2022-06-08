@@ -39,13 +39,13 @@ from .the_warriors import Warrior
 class Defender(Warrior):
     """Defender representation."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.health: int = 60
         self.attack: int = 3
         self.defense: int = 2
 
-    def take_damage(self, damage: int):
+    def take_damage(self, damage: int) -> None:
         """Take damage from hit (decreases health)."""
         if damage < 0:
             raise ValueError('damage must be greater than or equal to zero')
@@ -59,6 +59,6 @@ class Defender(Warrior):
 class Rookie(Warrior):
     """Rookie representation."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.attack: int = 1
